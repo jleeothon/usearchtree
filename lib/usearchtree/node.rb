@@ -5,10 +5,12 @@ class Node
 
     attr_accessor :id, :name
 
+    include Comparable
+
     def initialize id, name=nil
         @name = name
         @id = id
-        @edges = Hash.new
+        @edges = Array.new
     end
 
     # Returns the name of the node or its id as a string.
@@ -21,6 +23,10 @@ class Node
         self.to_s
     end
 
+    def <=> other
+        return @id <=> other.id
+    end
+
     # Returns the node in the format <tt><id:name></tt>.
     def to_adjacency_list
         s = "#{name}"
@@ -30,18 +36,21 @@ class Node
         unless @edges.empty?
             s += ":"
         end
-        @edges.each do |k, v|
-            s += " to(#{k})=#{v}"
+        @edges.each do |edge|
+            s += " to(#{edge.node})=#{edge.cost}"
         end
         return s
     end
 
     def add_edge node, cost
-        @edges[node] = cost
+        @edges << Edge.new(node, cost)
     end
 
     def cost node
-        @edges[node]
+        edge = @edges.find{|e| e.node == node}
+        if edge
+            edge.cost
+        end
     end
 
     # Gets the name if exists or the id

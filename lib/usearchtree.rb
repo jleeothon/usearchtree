@@ -1,6 +1,7 @@
 require 'usearchtree/search'
 require 'usearchtree/breadth'
 require 'usearchtree/depth'
+require 'usearchtree/edge'
 require 'usearchtree/graph'
 require 'usearchtree/graphloader'
 require 'usearchtree/node'

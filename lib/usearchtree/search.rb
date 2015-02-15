@@ -30,8 +30,12 @@ class SearchAlgorithm
             parent_node = self.remove_node
             @traversal << parent_node
             @cache[parent_node.key] = parent_node
-            return if parent_node == @goal
-            parent_node.edges.each do |node, cost|
+            if parent_node == @goal
+                return
+            end
+            parent_node.edges.each do |edge|
+                node = edge.node
+                cost = edge.cost
                 if not @cache or not @cache.has_key? node.key
                     @cache[node.key] = node
                     @tree[node] = parent_node
@@ -56,6 +60,7 @@ class SearchAlgorithm
         @cost = 0
         while node
             parent = @tree[node]
+            puts "node is #{node}, parent is #{parent}"
             @path.insert(0, node)
             @cost += parent ? parent.cost(node) : 0
             node = parent
@@ -64,8 +69,9 @@ class SearchAlgorithm
     end
 
     def cost
-        self.path if @cost.nil?
+        self.path if @path.empty?
         return @cost
     end
+
 
 end
