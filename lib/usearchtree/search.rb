@@ -8,7 +8,7 @@ class SearchAlgorithm
     # [space] a graph
     # [start] the id or name of the starting node
     # [goal] the id or name of the goal node
-    # [cache] <tt>true</tt> a cache of visited nodes is desired
+    # [cache] <code>true</code> a cache of visited nodes is desired
     def initialize space, start, goal, caches=true
         @space = space
         @start = space.node(start)
@@ -25,6 +25,8 @@ class SearchAlgorithm
         @cost = nil
     end
 
+    # Performs the search and populates <code>traversal</code> and
+    # <code>tree</code>
     def search
         until @list.empty?
             parent_node = self.remove_node
@@ -53,14 +55,13 @@ class SearchAlgorithm
     def remove_node
     end
 
-    # 
+    # Returns a list of all nodes in order from start to goal.
     def path
         return @path if @path.any?
         node = @goal
         @cost = 0
         while node
             parent = @tree[node]
-            puts "node is #{node}, parent is #{parent}"
             @path.insert(0, node)
             @cost += parent ? parent.cost(node) : 0
             node = parent
@@ -68,6 +69,8 @@ class SearchAlgorithm
         return @path
     end
 
+    # Retruns the total cost from start to goal following the path specifed in
+    # <code>SearchAlgorithm#Path</code>.
     def cost
         self.path if @path.empty?
         return @cost

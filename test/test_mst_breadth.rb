@@ -16,36 +16,37 @@ class TestMstBreadth < MiniTest::Test
     puts "\n-----\nAdjacency matrix for mst"
     puts @g.to_adjacency_lists
     puts "-----\n"
+    puts "Breadth first search path = #{@bfs.path}"
+    puts "Breadth first search tree = #{@bfs.tree}"
+    puts "Breadth first search traversal = #{@bfs.traversal}"
   end
 
-  def test_no_unit_cycle
+  def test_loder_no_unit_cycle
     assert_equal nil, @g.cost(0, 0)
   end
 
-  def test_cost
+  def test_loder_cost
     assert_equal 11, @g.cost(3, 4)
   end
 
-  def test_no_edge
+  def test_loder_no_edge
     assert_equal nil, @g.cost(6, 3)
   end
 
   def test_search_cost
-    puts "Breadth first search cost = #{@bfs.cost}"
     assert_equal 8, @bfs.cost
   end
 
   def test_search_path
-    puts "Breadth first search path = #{@bfs.path}"
     assert_equal "[A, F, E, H]", @bfs.path.to_s
   end
 
   def test_search_tree
-    puts "Breadth first search tree = #{@bfs.tree}"
+    assert_equal "[]", @bfs.traversal.to_s
   end
 
   def test_search_traversal
-    puts "Breadth first search traversal = #{@bfs.traversal}"
+    assert_equal "[]", 
   end
 
 end

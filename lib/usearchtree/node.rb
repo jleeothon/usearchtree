@@ -27,7 +27,7 @@ class Node
         return @id <=> other.id
     end
 
-    # Returns the node in the format <tt><id:name></tt>.
+    # Returns the node in the format <code><id:name></code>.
     def to_adjacency_list
         s = "#{name}"
         unless @name.nil? or @name.empty?

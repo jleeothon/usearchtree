@@ -24,7 +24,7 @@ class TestUsaBreadth < MiniTest::Test
   end
 
   def test_cost
-    assert_equal 11, @g.cost(3, 4)
+    assert_equal 1, @g.cost(3, 4)
   end
 
   def test_no_edge
@@ -38,7 +38,7 @@ class TestUsaBreadth < MiniTest::Test
 
   def test_search_path
     puts "Breadth first search path = #{@bfs.path}"
-    assert_equal "[A, F, E, H]", @bfs.path.to_s
+    assert_equal "[MA, NY, PA, OH, KY, MO, NE, WY, ID, WA]", @bfs.path.to_s
   end
 
   def test_search_tree
