@@ -15,8 +15,15 @@ task :console do
     sh "irb -I lib -r usearchtree.rb"
 end
 
-task :test do
+task :tests do
     test_files = Rake::FileList.new "test/test_*.rb"
+    test_files.each do |test_file|
+        ruby "-I lib #{test_file}"
+    end
+end
+
+task :test, [:pattern] do |t, args|
+    test_files = Rake::FileList.new "test/test_#{args[:pattern]}.rb"
     test_files.each do |test_file|
         ruby "-I lib #{test_file}"
     end

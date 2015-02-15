@@ -18,7 +18,7 @@ class Graph
         if @nodes.empty?
             "Empty graph"
         else
-            @nodes.collect{|node| node.inspect}.join("\n")
+            @nodes.collect{|node| node.to_adjacency_list}.join("\n")
         end
     end
 

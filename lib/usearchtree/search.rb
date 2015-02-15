@@ -1,7 +1,7 @@
 # Author: Johnny Lee Othon
 class SearchAlgorithm
 
-    attr_reader :goal, :space, :start, :traversal, :tree, :list
+    attr_reader :goal, :space, :start, :traversal, :tree
 
     # Initializes a search algorithm.
     # Parameters:
@@ -22,15 +22,12 @@ class SearchAlgorithm
         # lazy list of nodes from start to goal
         @path = Array.new
         # lazy total of cost from start to goal
-        @cost = 0
-        # insertion and removal are subclass-dependent
-        @list = [@start]
+        @cost = nil
     end
 
     def search
         until @list.empty?
             parent_node = self.remove_node
-            puts "parent node = #{parent_node}"
             return if parent_node == @goal
             parent_node.edges.each do |node, cost|
                 if not @cache or not @cache.has_key? node.key
@@ -57,20 +54,18 @@ class SearchAlgorithm
     def path
         return @path if @path.any?
         node = @goal
+        @cost = 0
         while node
-            puts "node ==== #{node}"
             parent = @tree[node]
-            puts "parent ==== #{parent}"
             @path.insert(0, node)
             @cost += parent ? parent.cost(node) : 0
             node = parent
         end
-        puts "path = #{@path}"
         return @path
     end
 
     def cost
-        self.path if @cost.zero?
+        self.path if @cost.nil?
         return @cost
     end
 
