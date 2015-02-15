@@ -1,2 +1,9 @@
 # usearchtree
-Uninformed search trees!
+Uninformed search trees
+
+## Usage
+
+
+```
+usearchtree --labels=PATH_OR_URL
+```
