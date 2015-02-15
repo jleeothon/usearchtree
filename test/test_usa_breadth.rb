@@ -2,18 +2,19 @@ require 'minitest/autorun'
 
 load 'usearchtree.rb'
 
-class TestMstBreadth < MiniTest::Test
+class TestUsaBreadth < MiniTest::Test
 
   def setup
     @g = Graph.new
-    load_label_nodes @g, 'test/mst_node_labels.txt'
-    load_distance_matrix @g, 'test/mst_distance_matrix.txt'
-    @bfs = BreadthFirstSearch.new @g, "A", "H"
+    load_label_nodes @g, 'test/usa_labels.txt'
+    load_distance_matrix @g, 'test/usa_adj_matrix.txt'
+    puts @g.to_adjacency_lists
+    @bfs = BreadthFirstSearch.new @g, "MA", "WA"
     @bfs.search
   end
 
   def test_loaders
-    puts "\n-----\nAdjacency matrix for mst"
+    puts "\n-----\nAdjacency matrix for usa"
     puts @g.to_adjacency_lists
     puts "-----\n"
   end
@@ -32,7 +33,7 @@ class TestMstBreadth < MiniTest::Test
 
   def test_search_cost
     puts "Breadth first search cost = #{@bfs.cost}"
-    assert_equal 8, @bfs.cost
+    assert_equal 9, @bfs.cost
   end
 
   def test_search_path

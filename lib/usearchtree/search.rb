@@ -27,16 +27,22 @@ class SearchAlgorithm
 
     def search
         until @list.empty?
+            puts "list = #{@list}"
             parent_node = self.remove_node
+            @traversal << parent_node
+            @cache[parent_node.key] = parent_node
             return if parent_node == @goal
             parent_node.edges.each do |node, cost|
+                # puts "parent = #{parent_node}, node = #{node}"
                 if not @cache or not @cache.has_key? node.key
+                    # puts "putting #{node.key}"
                     @cache[node.key] = node
-                    unless @tree.has_key? node
+                    # unless @tree.has_key? node
                         @tree[node] = parent_node
-                    end
-                    self.traversal << node
+                    # end
                     self.insert_node node
+                    # puts "tree = #{@tree}"
+                    # puts "traversal = #{@traversal}"
                 end
             end
         end

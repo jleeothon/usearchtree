@@ -4,9 +4,10 @@ require 'rake'
 
 task :help do
     puts "Usage"
-    puts "  console   starts a console with probaberry loaded"
-    puts "  help      shows this help text"
-    puts "  test      runs tests"
+    puts "  console          starts a console with probaberry loaded"
+    puts "  help             shows this help text"
+    puts "  tests            runs tests"
+    puts "  test[<pattern>]  runs test/test_<pattern>.rb"
 end
 
 task :default => [:help]

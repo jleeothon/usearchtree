@@ -25,8 +25,14 @@ Generate documentation using [RDoc](http://docs.seattlerb.org/rdoc/). `cd` to th
 rdoc
 ```
 
-Run the tests using:
+Run the tests from the project's root folder using:
 
 ```
-rake test
+rake tests
+```
+
+Or run a single test using the following example command. The argument is a test case's name without the `test_` prefix and without the `.rb` extension.
+
+```
+rake test[mst_breadth]
 ```

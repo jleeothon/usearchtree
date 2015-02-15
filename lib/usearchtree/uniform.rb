@@ -3,12 +3,13 @@ class UniformCostSearch < SearchAlgorithm
     def initialize space, start, goal, caches=true
         super(space, start, goal, caches)
         @list = [[0, @start]]
-        @traversal = [[0, @start]]
     end
 
     def search
         until @list.empty?
             cost, parent_node = self.remove_node
+            @cache[parent_node.key] = parent_node.key
+            @traversal << [cost, parent_node]
             return if parent_node == @goal
             parent_node.edges.each do |node, cost|
                 if not @cache or not @cache.has_key? node.key
@@ -16,7 +17,6 @@ class UniformCostSearch < SearchAlgorithm
                     unless @tree.has_key? node
                         @tree[node] = parent_node
                     end
-                    @traversal << [cost, node]
                     self.insert_node node, cost
                 end
             end

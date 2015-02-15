@@ -2,7 +2,6 @@ class BreadthFirstSearch < SearchAlgorithm
 
     def initialize space, start, goal, caches=true
         super(space, start, goal, caches)
-        @traversal = [@start]
         @list = [@start]
     end
 
