@@ -8,7 +8,6 @@ class TestUsaBreadth < MiniTest::Test
     @g = Graph.new
     load_label_nodes @g, 'test/usa_labels.txt'
     load_distance_matrix @g, 'test/usa_adj_matrix.txt'
-    puts @g.to_adjacency_lists
     @bfs = BreadthFirstSearch.new @g, "MA", "WA"
     @bfs.search
   end
