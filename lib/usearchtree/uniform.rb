@@ -11,7 +11,9 @@ class UniformCostSearch < SearchAlgorithm
             @cache[parent_node.key] = parent_node.key
             @traversal << [cost, parent_node]
             return if parent_node == @goal
-            parent_node.edges.each do |node, cost|
+            parent_node.edges.each do |edge|
+                node = edge.node
+                cost = edge.cost
                 if not @cache or not @cache.has_key? node.key
                     @cache[node.key] = node
                     unless @tree.has_key? node
