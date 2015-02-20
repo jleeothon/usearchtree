@@ -1,5 +1,5 @@
 # usearchtree
-Uninformed search trees
+Uninformed search trees - because ignorance is bliss
 
 ## Usage
 
