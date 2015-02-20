@@ -1,7 +1,7 @@
 # Author: Johnny Lee Othon
 class SearchAlgorithm
 
-    attr_reader :goal, :space, :start, :traversal, :tree
+    attr_reader :goal, :history, :space, :start, :traversal, :tree
 
     # Initializes a search algorithm.
     # Parameters:
@@ -23,36 +23,14 @@ class SearchAlgorithm
         @path = Array.new
         # lazy total of cost from start to goal
         @cost = nil
+        # history to see the history of the stack
+        @history = Array.new
     end
 
     # Performs the search and populates <code>traversal</code> and
     # <code>tree</code>
     def search
-        until @list.empty?
-            parent_node = self.remove_node
-            @traversal << parent_node
-            @cache[parent_node.key] = parent_node
-            if parent_node == @goal
-                return
-            end
-            parent_node.edges.each do |edge|
-                node = edge.node
-                cost = edge.cost
-                if not @cache or not @cache.has_key? node.key
-                    @cache[node.key] = node
-                    @tree[node] = parent_node
-                    self.insert_node node
-                end
-            end
-        end
-    end
-
-    # Not implemented
-    def insert_node node
-    end
-
-    # Not implemented
-    def remove_node
+        throw "Unimplemented"
     end
 
     # Returns a list of all nodes in order from start to goal.

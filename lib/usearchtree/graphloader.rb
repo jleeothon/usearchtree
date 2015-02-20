@@ -2,9 +2,11 @@
 # e.g. http://people.sc.fsu.edu/~jburkardt%20/data/graph_representation/mst_node_labels.txt
 def load_label_nodes graph, file
     File.open(file, 'r') do |f|
-        f.each.with_index do |line, i|
+        f.lazy.reject do |line|
+            line.chomp.empty? or line.start_with? '#'
+        end.with_index do |line, i|
             line.chomp!
-            unless line.empty?
+            if not line.empty? and not line.start_with? '#'
                 unless graph.length > i
                     graph.add_node
                 end
@@ -18,11 +20,11 @@ end
 # Loads a distance matrix. Rows correspond to source nodes and columns
 # correspond to destination nodes. -1 indicates a non-connection, 0 indicates
 # the same node, and positive values indicate an edge.
-# 
-# 
 def load_distance_matrix graph, file
     File.open(file, 'r') do |f|
-        f.each.with_index do |line, i|
+        f.each.reject do |line|
+            line.empty? or line.start_with? '#'
+        end.each.with_index do |line, i|
             costs = line.split
             costs = costs.collect &:to_i
             costs.each.with_index do |cost, j|

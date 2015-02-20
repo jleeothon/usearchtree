@@ -34,12 +34,12 @@ class Node
             s += "(#{@id})"
         end
         unless @edges.empty?
-            s += ":"
+            s += ": "
         end
-        @edges.each do |edge|
-            s += " to(#{edge.node})=#{edge.cost}"
-        end
-        return s
+        nodes = @edges.map do |edge|
+            "#{edge.node}=>#{edge.cost}"
+        end.join(", ")
+        s += nodes
     end
 
     def add_edge node, cost

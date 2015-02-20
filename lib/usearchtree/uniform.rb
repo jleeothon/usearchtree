@@ -1,12 +1,9 @@
 class UniformCostSearch < SearchAlgorithm
 
-    def initialize space, start, goal, caches=true
-        super(space, start, goal, caches)
-        @list = [[0, @start]]
-    end
-
     def search
+        @list = [[0, @start]]
         until @list.empty?
+            @history << @list.clone
             cost, parent_node = self.remove_node
             @cache[parent_node.key] = parent_node.key
             @traversal << [cost, parent_node]

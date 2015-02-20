@@ -12,12 +12,6 @@ class TestMstUniform < MiniTest::Test
     @ucs.search
   end
 
-  def test_loaders
-    puts "\n-----\nAdjacency matrix for mst"
-    puts @g.to_adjacency_lists
-    puts "-----\n"
-  end
-
   def test_no_unit_cycle
     assert_equal nil, @g.cost(0, 0)
   end
@@ -31,21 +25,11 @@ class TestMstUniform < MiniTest::Test
   end
 
   def test_search_cost
-    puts "Uniform cost search cost = #{@ucs.cost}"
     assert_equal 8, @ucs.cost
   end
 
   def test_search_path
-    puts "Uniform cost search path = #{@ucs.path}"
     assert_equal "[A, F, E, H]", @ucs.path.to_s
-  end
-
-  def test_search_tree
-    puts "Uniform cost search tree = #{@ucs.tree}"
-  end
-
-  def test_search_traversal
-    puts "Uniform cost search traversal = #{@ucs.traversal}"
   end
 
 end

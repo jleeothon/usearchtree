@@ -6,8 +6,9 @@ task :help do
     puts "Usage"
     puts "  console          starts a console loaded with usearchtree"
     puts "  help             shows this help text"
-    puts "  tests            runs tests"
+    puts "  run[<filename>]  runs <pattern>"
     puts "  test[<pattern>]  runs test/test_<pattern>.rb"
+    puts "  tests            runs tests"
 end
 
 task :default => [:help]
@@ -31,6 +32,18 @@ task :test, [:pattern] do |t, args|
         test_files = Rake::FileList.new "test/test_#{args[:pattern]}.rb"
         test_files.each do |test_file|
             ruby "-I lib #{test_file}"
+        end
+    end
+end
+
+task :run, [:filename] do |t, args|
+    if args[:filename].nil?
+        STDERR.puts 'Please provide a filename in square brackets'
+        Rake::Task[:help].invoke
+    else
+        files = Rake::FileList.new "#{args[:filename]}"
+        files.each do |file|
+            ruby "-I lib #{file}"
         end
     end
 end
