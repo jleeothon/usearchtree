@@ -1,10 +1,9 @@
 class UniformCostSearch < SearchAlgorithm
-
     def search
         @list = [[0, @start]]
         until @list.empty?
             @history << @list.clone
-            cost, parent_node = self.remove_node
+            cost, parent_node = @list.shift
             @cache[parent_node.key] = parent_node.key
             @traversal << [cost, parent_node]
             return if parent_node == @goal
@@ -17,19 +16,9 @@ class UniformCostSearch < SearchAlgorithm
                     unless @tree.has_key? node
                         @tree[node] = parent_node
                     end
-                    self.insert_node node, cost
+                    @list << [cost, node]
                 end
             end
         end
     end
-
-    def insert_node node, cost
-        @list << [cost, node]
-        @list.sort!
-    end
-
-    def remove_node
-        @list.shift
-    end
-
 end

@@ -1,5 +1,4 @@
 class BreadthFirstSearch < SearchAlgorithm
-
     def search
         @list = [@start]
         until @list.empty?

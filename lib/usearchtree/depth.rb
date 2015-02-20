@@ -1,8 +1,6 @@
 class DepthFirstSearch < SearchAlgorithm
-
     def search
         @list = [@start]
-        @traversal = [@start]
         until @list.empty?
             @history << @list.clone
             parent_node = @list.pop
