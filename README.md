@@ -5,7 +5,7 @@ Uninformed search trees - because ignorance is bliss
 
 ### Dependencies
 
-Install [Ruby](https://www.ruby-lang.org/en/).
+Install [Ruby](https://www.ruby-lang.org/en/). Has only been tested with Ruby 2.1.5.
 
 Install [RubyGems](https://rubygems.org/) (requires Ruby).
 
@@ -15,17 +15,34 @@ Install [Rake](https://rubygems.org/gems/rake) (requires RubyGems):
 gem install rake
 ```
 
-Get the `usearchtree` project from:
+Install the gem using:
 
-```sh
+```shell
+gem install usearchtree
+```
+
+Or get the latest version with:
+
+```shell
 git clone https://github.com/jleeothon/usearchtree
 ```
 
-Optinally, generate documentation using [RDoc](http://docs.seattlerb.org/rdoc/). `cd` to the root folder, then run:
+## Documentation
 
-```sh
-rdoc
-```
+### Documentation for the installed gem
+
+To read the documentation for the gem installed, use `gem server`. Then open your browser in `http://localhost:8808/`.
+
+### Documentation for a repository clone
+
+1. Install `rdoc`: `gem install rdoc`.
+2. `cd` to the root of the project.
+3. Run `rdoc`.
+4. Open the `docs` folder and open any HTML file.
+
+## Testing
+
+**Warning: test files have been deleted. This section is broken.**
 
 Run the tests from the project's root folder using:
 
@@ -36,7 +53,7 @@ rake tests
 Or run a single test using the following example command. The argument is a test case's name without the `test_` prefix and without the `.rb` extension.
 
 ```sh
-rake test[mst_breadth]
+rake test[1_breadth]
 ```
 
 To run a console loaded with `usearchtree`, run:
@@ -62,7 +79,3 @@ puts b.cost
 # 99
 
 ```
-
-## Disclaimer
-
-The test fixtures are not of my authorship and are subject to a separate GNU LGPL license. They can be found [here](http://people.sc.fsu.edu/~jburkardt%20/data/graph_representation/graph_representation.html).
