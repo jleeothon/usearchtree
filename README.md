@@ -1,5 +1,8 @@
 # usearchtree
+
 Uninformed search trees - because ignorance is bliss
+
+[![Build Status](https://travis-ci.org/jleeothon/usearchtree.svg?branch=master)](https://travis-ci.org/jleeothon/usearchtree)
 
 ## Usage
 
